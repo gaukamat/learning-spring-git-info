@@ -38,17 +38,19 @@
 				<configuration>
 					<failOnNoGitDirectory>true</failOnNoGitDirectory>
 					<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-					<generateGitPropertiesFilename>${project.build.outputDirectory}/my-git-info.properties</generateGitPropertiesFilename>
+					<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
 					<verbose>true</verbose>
 					<generateGitPropertiesFile>true</generateGitPropertiesFile>
 					<prefix>git</prefix>
 					<runOnlyOnce>true</runOnlyOnce>
-					<excludeProperties>
-						<excludeProperty>git.user.*</excludeProperty>
-					</excludeProperties>
+					<!-- the plugin will not try to contact any remote repositories. -->
+					<offline>true</offline>
 					<!--
+						<excludeProperties>
+							<excludeProperty>git.user.*</excludeProperty>
+						</excludeProperties>
 						<includeOnlyProperties>
-						<includeOnlyProperty>git.commit.id</includeOnlyProperty>
+							<includeOnlyProperty>git.commit.id</includeOnlyProperty>
 						</includeOnlyProperties>
 					-->
 				</configuration>
