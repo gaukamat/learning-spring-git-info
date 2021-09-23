@@ -14,6 +14,9 @@
 	<description>Git Info REST API using Git Maven Plugin - two ways - using Spring MVC and Spring Actuator</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,6 +35,34 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>				
+				    <execution>
+				        <id>antrun-plugin</id>
+				        <phase>validate</phase>
+ 				       <goals>
+ 				           <goal>run</goal>
+				        </goals>
+				        <configuration>
+				            <target>
+ 				               <echo message="Hello IBM Cloud DevOps Toolchain" level="info"/>
+ 				               <echo message="Maven build dir: ${project.build.directory}" level="info"/>
+ 				               <echo message="[Git Plugin] dotGitDirectory: ${project.basedir}/.git" level="info"/>
+ 				               <echo message="[Git Plugin] generateGitPropertiesFilename: ${project.build.outputDirectory}/git.properties" level="info"/>
+					<echo level="info">Current Working Directory: ${user.dir}</echo>
+					<attrib hidden="true">			
+						<dirset id="dist.contents" dir="${project.basedir}" includes="*"/>
+					</attrib> 
+					<property name="prop.dist.contents" refid="dist.contents"/>
+					<echo message="${prop.dist.contents}" level="info"/>
+ 				           </target>
+				        </configuration>
+				    </execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
